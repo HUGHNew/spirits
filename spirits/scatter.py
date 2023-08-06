@@ -1,8 +1,10 @@
 import os
 
-from PIL import Image
+from .utils import get_image
 
-def division(image: Image.Image, row:int, column:int, output_dir:str):
+def division(image_ref: str, row:int, column:int, output_dir:str):
+    image = get_image(image_ref)
+    ext_name = image_ref.split('.')[-1]
     w, h = image.size
     w_delta, h_delta = w//column, h//row
     if os.path.exists(output_dir):
@@ -13,5 +15,5 @@ def division(image: Image.Image, row:int, column:int, output_dir:str):
     for r in range(row):
         for c in range(column):
             left, upper = c * w_delta, r * h_delta
-            image.crop((left, upper, left+w_delta, upper+h_delta)).save(os.path.join(output_dir,f"{r}-{c}.jpg"))
+            image.crop((left, upper, left+w_delta, upper+h_delta)).save(os.path.join(output_dir,f"{r}-{c}.{ext_name}"))
 
