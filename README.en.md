@@ -2,11 +2,12 @@
 
 make and compose spirits images
 
-> `pip install spirits`
+> `pipx install spirits`
 
 ```bash
 # make spirits
 spirits scatter example/pypi_logo.png 3 3 # default output dir: ./output
+spirits scatter example/pypi_logo.png 3 3 --flex-range 15 # Split the image, detect the boundary at the pixel level, and get pieces with incomplete height and width
 spirits scatter example/pypi_logo.png 3 3 --output-dir example/output
 
 # compose spirits
